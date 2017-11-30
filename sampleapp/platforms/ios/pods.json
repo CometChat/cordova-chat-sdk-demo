@@ -1,0 +1,7 @@
+{
+    "libs/ios/cometchat-ui.framework": {
+        "name": "libs/ios/cometchat-ui.framework",
+        "type": "podspec",
+        "count": 1
+    }
+}
