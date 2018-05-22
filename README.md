@@ -1,5 +1,5 @@
 # cordova-chat-sdk-demo
-CometChat enables you to add voice, video and text chat to your iOS app in minutes! That's not all, CometChat has whiteboard, writeboard, real-time translation and more.
+CometChat enables you to add voice, video and text chat to your Cordova app in minutes! That's not all, CometChat has whiteboard, writeboard, real-time translation and more.
 
 # Quick Start
 
