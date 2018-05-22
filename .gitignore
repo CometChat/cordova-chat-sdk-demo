@@ -1,0 +1,19 @@
+# Created by https://www.gitignore.io/api/apachecordova
+
+### ApacheCordova ###
+# Apache Cordova generated files and directories
+bin/*
+!CometChatSample/plugins
+!CometChatSample/plugins/android.json
+!CometChatSample/plugins/fetch.json
+CometChatSample/plugins/*
+CometChatSample/platforms/*
+CometChatSample/node_modules/*
+CometChatSample/res/icon/*
+CometChatSample/res/screen/*
+!CometChatSample/res/icon/android
+!CometChatSample/res/screen/android
+!CometChatSample/res/icon/ios
+!CometChatSample/res/screen/ios
+
+# End of https://www.gitignore.io/api/apachecordova
