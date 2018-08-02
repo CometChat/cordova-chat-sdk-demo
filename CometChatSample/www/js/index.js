@@ -17,68 +17,68 @@
  * under the License.
  */
 
-var licenseKey = "COMETCHAT-XXXXX-XXXXX-XXXXX-XXXXX";  // Replace the value with your CometChat License Key;
-var apiKey = "xxxxxxxxxxxxxxxxxxxxxx" // Replace the value with your CometChat Api Key;
-var UID1  = "SUPERHERO1"
-var UID2  = "SUPERHERO2"
+var licenseKey = "COMETCHAT-XXXXX-XXXXX-XXXXX-XXXXX"; // Replace the value with your CometChat License Key;
+var apiKey = "xxxxxxxxxxxxxxxxxxxxxxxx" // Replace the value with your CometChat Api Key;
+var UID1 = "SUPERHERO3"
+var UID2 = "123"
 
 
 function initializeChat() {
     showLoader();
-    document.getElementById("initializeChat").setAttribute("disabled","disabled");
+    document.getElementById("initializeChat").setAttribute("disabled", "disabled");
 
-    CCCometChat.initializeCometChat("",licenseKey,apiKey,true,function success(response){
-        alert("Inside Success Callback "+response);
+    CCCometChat.initializeCometChat("", licenseKey, apiKey, true, function success(response) {
+        alert("Inside Success Callback " + response);
         showLogins();
         showLoader(false);
-    },function failure(error){
-        alert("Inside Fail Callback "+error);
+    }, function failure(error) {
+        alert("Inside Fail Callback " + error);
         document.getElementById("initializeChat").removeAttribute("disabled");
         showLoader(false);
     });
 }
 
-function login(UID){
+function login(UID) {
     showLoader();
     showLogins(false);
-    CCCometChat.loginWithUID(UID,function success(response){
-        alert("Logged in as : " + UID +" Response : "+response);
+    CCCometChat.loginWithUID(UID, function success(response) {
+        alert("Logged in as : " + UID + " Response : " + response);
         document.getElementById("launchChat").removeAttribute("disabled");
         showLoader(false);
-    },function failure(error){
-        alert("Inside Login failure Callback "+error);
+    }, function failure(error) {
+        alert("Inside Login failure Callback " + error);
         showLogins();
         showLoader(false);
     });
 }
 
-function launchChat(){
+function launchChat() {
     var isFullScreen = true;
     showLoader();
-    CCCometChat.launchCometChat(isFullScreen,function success(data){ 
-        alert(" success "+data);
+    CCCometChat.launchCometChat(isFullScreen, function success(data) {
+        console.log("iOS data " + JSON.stringify(data));
         showLoader(false);
 
-    },function error(data){
-         alert(" fail "+data); 
-         showLoader(false);
+    }, function error(data) {
+
+        showLoader(false);
     });
 }
 
-function showLoader(show=true){
-    if(show){
+function showLoader(show = true) {
+    if (show) {
         document.getElementById("loader").style.display = "block";
-    }else{
+    } else {
         document.getElementById("loader").style.display = "none";
     }
 }
 
-function showLogins(show=true){
-    if(show){
+function showLogins(show = true) {
+    if (show) {
         document.getElementById("loginWithSuperHero1").removeAttribute("disabled");
         document.getElementById("loginWithSuperHero2").removeAttribute("disabled");
-    }else{
-        document.getElementById("loginWithSuperHero1").setAttribute("disabled","disabled");
-        document.getElementById("loginWithSuperHero2").setAttribute("disabled","disabled");
+    } else {
+        document.getElementById("loginWithSuperHero1").setAttribute("disabled", "disabled");
+        document.getElementById("loginWithSuperHero2").setAttribute("disabled", "disabled");
     }
 }
