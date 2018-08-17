@@ -18,15 +18,30 @@
  */
 
 var licenseKey = "COMETCHAT-XXXXX-XXXXX-XXXXX-XXXXX"; // Replace the value with your CometChat License Key;
-var apiKey = "xxxxxxxxxxxxxxxxxxxxxxxx" // Replace the value with your CometChat Api Key;
-var UID1 = "SUPERHERO3"
-var UID2 = "123"
+var apiKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx" // Replace the value with your CometChat Api Key;
+var UID1 = "SUPERHERO1"
+var UID2 = "SUPERHERO2"
 
 
 function initializeChat() {
     showLoader();
     document.getElementById("initializeChat").setAttribute("disabled", "disabled");
+    FirebasePlugin.grantPermission();
 
+    FirebasePlugin.getToken(function (token) {
+        // save this server-side and use it to push notifications to this device
+        console.log("GetToken " + token);
+    }, function (error) {
+        console.error(error);
+    });
+    FirebasePlugin.onTokenRefresh(function (token) {
+        // save this server-side and use it to push notifications to this device
+        console.log("onTokenRefresh " + token);
+    }, function (error) {
+        console.error(error);
+    });
+
+    //New Plugin End
     CCCometChat.initializeCometChat("", licenseKey, apiKey, true, function success(response) {
         alert("Inside Success Callback " + response);
         showLogins();
@@ -55,13 +70,38 @@ function login(UID) {
 function launchChat() {
     var isFullScreen = true;
     showLoader();
+
     CCCometChat.launchCometChat(isFullScreen, function success(data) {
-        console.log("iOS data " + JSON.stringify(data));
         showLoader(false);
 
+        CCCometChat.getPlatform(currentplatform => {
+
+            if (currentplatform.platform == "iOS") {
+                data = JSON.stringify(data);
+            }
+            data = JSON.parse(data);
+
+            if (data.hasOwnProperty("userInfoCallback")) {
+                subscribeToChannel(data.userInfoCallback.push_channel);
+            } else if (data.hasOwnProperty('chatroomInfoCallback')) {
+                subscribeToChannel(data.chatroomInfoCallback.push_channel);
+            }
+
+        });
     }, function error(data) {
 
         showLoader(false);
+    });
+}
+
+function subscribeToChannel(push_channel) {
+    console.log("subscribeToChannel : " + push_channel);
+
+    FirebasePlugin.subscribe(push_channel);
+    FirebasePlugin.onNotificationOpen(function (notification) {
+        console.log("onNotificationOpen " + notification);
+    }, function (error) {
+        console.error(error);
     });
 }
 
