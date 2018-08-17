@@ -26,20 +26,6 @@ var UID2 = "SUPERHERO2"
 function initializeChat() {
     showLoader();
     document.getElementById("initializeChat").setAttribute("disabled", "disabled");
-    FirebasePlugin.grantPermission();
-
-    FirebasePlugin.getToken(function (token) {
-        // save this server-side and use it to push notifications to this device
-        console.log("GetToken " + token);
-    }, function (error) {
-        console.error(error);
-    });
-    FirebasePlugin.onTokenRefresh(function (token) {
-        // save this server-side and use it to push notifications to this device
-        console.log("onTokenRefresh " + token);
-    }, function (error) {
-        console.error(error);
-    });
 
     //New Plugin End
     CCCometChat.initializeCometChat("", licenseKey, apiKey, true, function success(response) {
@@ -96,13 +82,7 @@ function launchChat() {
 
 function subscribeToChannel(push_channel) {
     console.log("subscribeToChannel : " + push_channel);
-
-    FirebasePlugin.subscribe(push_channel);
-    FirebasePlugin.onNotificationOpen(function (notification) {
-        console.log("onNotificationOpen " + notification);
-    }, function (error) {
-        console.error(error);
-    });
+    //you can subscribe to Firebase using above pushchannel 
 }
 
 function showLoader(show = true) {
