@@ -1,7 +1,16 @@
 # cordova-chat-sdk-demo
 CometChat enables you to add voice, video and text chat to your Cordova app in minutes! That's not all, CometChat has whiteboard, writeboard, real-time translation and more.
 
-# Quick Start
+# For New Customers
+If you would like to add CometChat to your app, please use CometChat Pro:
+
+Step 1- Signup for CometChat Pro at https://app.cometchat.com
+
+Step 2- View the CometChat Pro documentation at https://prodocs.cometchat.com
+
+# For Existing Customers
+
+## Quick Start
 
 1. Download the sample Cordova project from this repository.
 2. Open the `www/js/index.js` file and replace the `CometChat License Key` and `API Key` values. These values can be found in the `CometChat Admin Panel`, under the `Settings`-> `API Keys` section.
@@ -22,7 +31,7 @@ Please Note: As CometChat Cordova plugin makes use if Cocoapods, please make sur
 cordova run android</br>
 cordova run ios
 
-# Please Note:
+## Please Note:
 
 CometChat Cordova plugin only supports the Android and iOS platforms.
 
